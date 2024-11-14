@@ -24,7 +24,7 @@ spec:
   shard: kargo-agent
   subscriptions:
   - git:
-      repoURL: https://github.com/dhpup/kargo.git
+      repoURL: https://github.com/EmilyXinyi/kargo.git
       branch: main
   - image:
       repoURL: ghcr.io/dhpup/guestbook
@@ -46,7 +46,7 @@ spec:
       direct: true
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/EmilyXinyi/kargo.git
       writeBranch: stage/test
       kustomize:
         images:
@@ -74,7 +74,7 @@ spec:
       - test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/EmilyXinyi/kargo.git
       writeBranch: stage/uat
       kustomize:
         images:
@@ -106,7 +106,7 @@ spec:
       - uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/EmilyXinyi/kargo.git
       writeBranch: stage/prod-useast
       kustomize:
         images:
@@ -134,7 +134,7 @@ spec:
       - uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/EmilyXinyi/kargo.git
       writeBranch: stage/prod-uswest
       kustomize:
         images:
