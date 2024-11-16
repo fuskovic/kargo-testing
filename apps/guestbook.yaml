@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/emilyxinyi/kargo.git
         targetRevision: stage/{{stage}}
-        path: guestbook/stages/{{stage}}
+        path: ./
       destination:
         name: mac1
         namespace: guestbook-{{stage}}
