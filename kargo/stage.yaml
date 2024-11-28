@@ -33,7 +33,7 @@ spec:
         config:
           path: ./src/guestbook/base
           images:
-          - image: ghcr.io/dhpup/guestbook
+          - image: ghcr.io/emilyxinyi/guestbook
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/test
@@ -92,7 +92,7 @@ spec:
         config:
           path: ./src/guestbook/base
           images:
-          - image: ghcr.io/dhpup/guestbook
+          - image: ghcr.io/emilyxinyi/guestbook
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/uat
@@ -154,7 +154,7 @@ spec:
         config:
           path: ./src/guestbook/base
           images:
-          - image: ghcr.io/dhpup/guestbook
+          - image: ghcr.io/emilyxinyi/guestbook
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/prod-useast
@@ -213,7 +213,7 @@ spec:
         config:
           path: ./src/guestbook/base
           images:
-          - image: ghcr.io/dhpup/guestbook
+          - image: ghcr.io/emilyxinyi/guestbook
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/prod-useast
