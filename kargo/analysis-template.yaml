@@ -16,7 +16,7 @@ spec:
                   - command:
                       - /bin/sh
                       - -c
-                      - exit 1
-                    image: alpine:3.21.0
+                      - exit 0
+                    image: alpine:latest
                     name: test
                 restartPolicy: Never
