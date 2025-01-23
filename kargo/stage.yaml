@@ -169,8 +169,8 @@ spec:
         as: push
         config:
           path: ./out
-          generateTargetBranch: true
-          # targetBranch: stage/prod-useast
+          # generateTargetBranch: true
+          targetBranch: stage/prod-useast
       - uses: git-open-pr
         as: open-pr
         config:
