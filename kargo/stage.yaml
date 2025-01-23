@@ -195,7 +195,7 @@ spec:
           - name: guestbook-prod-useast
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredCommitFromStep: commit
+              desiredRevision: ${{ outputs.commit.commit }}
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
