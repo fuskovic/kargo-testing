@@ -166,9 +166,24 @@ spec:
           messageFromSteps:
           - update-image
       - uses: git-push
+        as: push
         config:
           path: ./out
+          generateTargetBranch: true
+          # targetBranch: stage/prod-useast
+      - uses: git-open-pr
+        as: open-pr
+        config:
+          repoURL: https://github.com/emilyxinyi/kargo.git
+          createTargetBranch: true
+          sourceBranch: ${{ outputs.push.branch }}
+          # targetBranch: stage/${{ ctx.stage }}
           targetBranch: stage/prod-useast
+      - uses: git-wait-for-pr
+        as: wait-for-pr
+        config:
+          repoURL: https://github.com/emilyxinyi/kargo.git
+          prNumber: ${{ outputs['open-pr'].prNumber }}
       - uses: argocd-update
         config:
           apps:
