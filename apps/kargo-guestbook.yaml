@@ -8,7 +8,8 @@ spec:
     repoURL: https://github.com/emilyxinyi/kargo.git
     path: kargo
   destination:
-    server: https://cc19n7e2dnosprep-cplane.kargosvcs.akuity.cloud
+    # server: https://cc19n7e2dnosprep-cplane.kargosvcs.akuity.cloud
+    name: kargo1
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
