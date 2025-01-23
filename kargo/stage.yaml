@@ -176,9 +176,8 @@ spec:
         config:
           repoURL: https://github.com/emilyxinyi/kargo.git
           createTargetBranch: true
-          # sourceBranch: ${{ outputs.push.branch }}
+          sourceBranch: ${{ outputs.push.branch }}
           # targetBranch: stage/${{ ctx.stage }}
-          sourceBranch: main
           targetBranch: stage/prod-useast
       - uses: git-wait-for-pr
         as: wait-for-pr
