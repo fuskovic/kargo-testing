@@ -136,18 +136,18 @@ spec:
       - uat
   promotionTemplate:
     spec:
-      vars:
-      - name: gitRepo
-        value: https://github.com/emilyxinyi/kargo.git
+      # vars:
+      # - name: gitRepo
+      #   value: https://github.com/emilyxinyi/kargo.git
       steps:
       - uses: git-clone
         config:
-          # repoURL: https://github.com/emilyxinyi/kargo.git
+          repoURL: https://github.com/emilyxinyi/kargo.git
           checkout:
-          # - branch: main
-          #   path: ./src
-          - commit: ${{ commitFrom(vars.gitRepo) }}
+          - branch: main
             path: ./src
+          # - commit: ${{ commitFrom(vars.gitRepo) }}
+          #   path: ./src
           - branch: stage/prod-useast
             create: true
             path: ./out
