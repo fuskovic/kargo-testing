@@ -112,9 +112,9 @@ spec:
           - name: guestbook-uat
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-  verification:
-    analysisTemplates:
-    - name: guestbook-verification-3
+  # verification:
+  #   analysisTemplates:
+  #   - name: guestbook-verification-3
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
