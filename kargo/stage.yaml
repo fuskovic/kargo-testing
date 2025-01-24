@@ -54,7 +54,6 @@ spec:
           - name: guestbook-test
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredCommitFromStep: commit
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
@@ -113,7 +112,6 @@ spec:
           - name: guestbook-uat
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredCommitFromStep: commit
   verification:
     analysisTemplates:
     - name: guestbook-verification-3
@@ -254,4 +252,3 @@ spec:
           - name: guestbook-prod-uswest
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredCommitFromStep: commit
