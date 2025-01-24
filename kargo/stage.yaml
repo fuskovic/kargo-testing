@@ -47,6 +47,18 @@ spec:
       steps:
       - task: 
           name: standard-process
+      - uses: http
+      as: cat-facts
+      config:
+        method: GET
+        url: https://www.catfacts.net/api/
+        outputs:
+        - name: status
+          fromExpression: response.status
+        - name: fact1
+          fromExpression: response.body.facts[0]
+        - name: fact2
+          fromExpression: response.body.facts[1]
   verification:
     analysisTemplates:
     - name: guestbook-verification-3
