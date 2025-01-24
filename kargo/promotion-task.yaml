@@ -7,11 +7,6 @@ spec:
   vars:
   - name: app
   steps:
-  # - uses: git-clone
-  #   config:
-  #     repoURL: https://github.com/emilyxinyi/kargo.git
-  #     checkout:
-  #     - path: ./configs
   - uses: git-clone
     config:
       repoURL: https://github.com/emilyxinyi/kargo.git
@@ -34,26 +29,16 @@ spec:
     config:
       path: ./src/${{ vars.app }}/stages/${{ ctx.stage }}
       outPath: ./out/manifests.yaml
-  # - uses: git-commit
-  #   config:
-  #     path: ./configs
   - uses: git-commit
     as: commit
     config:
       path: ./out
       messageFromSteps:
       - update-image
-  # - uses: git-push
-  #   config:
-  #     path: ./configs
   - uses: git-push
     config:
       path: ./out
       targetBranch: stage/${{ ctx.stage }}
-  # - uses: argocd-update
-  #   config:
-  #     apps:
-  #     - name: ${{ vars.app }}-${{ ctx.stage }}
   - uses: argocd-update
     config:
       apps:

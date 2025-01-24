@@ -21,44 +21,6 @@ spec:
       steps:
       - task: 
           name: standard-process
-      # - uses: git-clone
-      #   config:
-      #     repoURL: https://github.com/emilyxinyi/kargo.git
-      #     checkout:
-      #     - branch: main
-      #       path: ./src
-      #     - branch: stage/test
-      #       create: true
-      #       path: ./out
-      # - uses: git-clear
-      #   config:
-      #     path: ./out
-      # - uses: kustomize-set-image
-      #   as: update-image
-      #   config:
-      #     path: ./src/guestbook/base
-      #     images:
-      #     - image: ghcr.io/emilyxinyi/guestbook
-      # - uses: kustomize-build
-      #   config:
-      #     path: ./src/guestbook/stages/test
-      #     outPath: ./out/manifests.yaml
-      # - uses: git-commit
-      #   as: commit
-      #   config:
-      #     path: ./out
-      #     messageFromSteps:
-      #     - update-image
-      # - uses: git-push
-      #   config:
-      #     path: ./out
-      #     targetBranch: stage/test
-      # - uses: argocd-update
-      #   config:
-      #     apps:
-      #     - name: guestbook-test
-      #       sources:
-      #       - repoURL: https://github.com/emilyxinyi/kargo.git
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
@@ -78,45 +40,50 @@ spec:
       - test
   promotionTemplate:
     spec:
+      vars:
+      - name: app
+        value: guestbook
       steps:
-      - uses: git-clone
-        config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
-          checkout:
-          - branch: main
-            path: ./src
-          - branch: stage/uat
-            create: true
-            path: ./out
-      - uses: git-clear
-        config:
-          path: ./out
-      - uses: kustomize-set-image
-        as: update-image
-        config:
-          path: ./src/guestbook/base
-          images:
-          - image: ghcr.io/emilyxinyi/guestbook
-      - uses: kustomize-build
-        config:
-          path: ./src/guestbook/stages/uat
-          outPath: ./out/manifests.yaml
-      - uses: git-commit
-        as: commit
-        config:
-          path: ./out
-          messageFromSteps:
-          - update-image
-      - uses: git-push
-        config:
-          path: ./out
-          targetBranch: stage/uat
-      - uses: argocd-update
-        config:
-          apps:
-          - name: guestbook-uat
-            sources:
-            - repoURL: https://github.com/emilyxinyi/kargo.git
+      - task: 
+          name: standard-process
+      # - uses: git-clone
+      #   config:
+      #     repoURL: https://github.com/emilyxinyi/kargo.git
+      #     checkout:
+      #     - branch: main
+      #       path: ./src
+      #     - branch: stage/uat
+      #       create: true
+      #       path: ./out
+      # - uses: git-clear
+      #   config:
+      #     path: ./out
+      # - uses: kustomize-set-image
+      #   as: update-image
+      #   config:
+      #     path: ./src/guestbook/base
+      #     images:
+      #     - image: ghcr.io/emilyxinyi/guestbook
+      # - uses: kustomize-build
+      #   config:
+      #     path: ./src/guestbook/stages/uat
+      #     outPath: ./out/manifests.yaml
+      # - uses: git-commit
+      #   as: commit
+      #   config:
+      #     path: ./out
+      #     messageFromSteps:
+      #     - update-image
+      # - uses: git-push
+      #   config:
+      #     path: ./out
+      #     targetBranch: stage/uat
+      # - uses: argocd-update
+      #   config:
+      #     apps:
+      #     - name: guestbook-uat
+      #       sources:
+      #       - repoURL: https://github.com/emilyxinyi/kargo.git
   # verification:
   #   analysisTemplates:
   #   - name: guestbook-verification-3
@@ -218,42 +185,48 @@ spec:
       - uat
   promotionTemplate:
     spec:
+      vars:
+      - name: app
+        value: guestbook
       steps:
-      - uses: git-clone
-        config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
-          checkout:
-          - branch: main
-            path: ./src
-          - branch: stage/prod-uswest
-            create: true
-            path: ./out
-      - uses: git-clear
-        config:
-          path: ./out
-      - uses: kustomize-set-image
-        as: update-image
-        config:
-          path: ./src/guestbook/base
-          images:
-          - image: ghcr.io/emilyxinyi/guestbook
-      - uses: kustomize-build
-        config:
-          path: ./src/guestbook/stages/prod-useast
-          outPath: ./out/manifests.yaml
-      - uses: git-commit
-        as: commit
-        config:
-          path: ./out
-          messageFromSteps:
-          - update-image
-      - uses: git-push
-        config:
-          path: ./out
-          targetBranch: stage/prod-uswest
-      - uses: argocd-update
-        config:
-          apps:
-          - name: guestbook-prod-uswest
-            sources:
-            - repoURL: https://github.com/emilyxinyi/kargo.git
+      - task: 
+          name: standard-process
+      # steps:
+      # - uses: git-clone
+      #   config:
+      #     repoURL: https://github.com/emilyxinyi/kargo.git
+      #     checkout:
+      #     - branch: main
+      #       path: ./src
+      #     - branch: stage/prod-uswest
+      #       create: true
+      #       path: ./out
+      # - uses: git-clear
+      #   config:
+      #     path: ./out
+      # - uses: kustomize-set-image
+      #   as: update-image
+      #   config:
+      #     path: ./src/guestbook/base
+      #     images:
+      #     - image: ghcr.io/emilyxinyi/guestbook
+      # - uses: kustomize-build
+      #   config:
+      #     path: ./src/guestbook/stages/prod-useast
+      #     outPath: ./out/manifests.yaml
+      # - uses: git-commit
+      #   as: commit
+      #   config:
+      #     path: ./out
+      #     messageFromSteps:
+      #     - update-image
+      # - uses: git-push
+      #   config:
+      #     path: ./out
+      #     targetBranch: stage/prod-uswest
+      # - uses: argocd-update
+      #   config:
+      #     apps:
+      #     - name: guestbook-prod-uswest
+      #       sources:
+      #       - repoURL: https://github.com/emilyxinyi/kargo.git
