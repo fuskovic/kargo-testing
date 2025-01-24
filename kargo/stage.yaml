@@ -47,18 +47,18 @@ spec:
       steps:
       - task: 
           name: standard-process
-      - uses: http
-      as: cat-facts
-      config:
-        method: GET
-        url: https://www.catfacts.net/api/
-        outputs:
-        - name: status
-          fromExpression: response.status
-        - name: fact1
-          fromExpression: response.body.facts[0]
-        - name: fact2
-          fromExpression: response.body.facts[1]
+      # - uses: http
+      # as: cat-facts
+      # config:
+      #   method: GET
+      #   url: https://www.catfacts.net/api/
+      #   outputs:
+      #   - name: status
+      #     fromExpression: response.status
+      #   - name: fact1
+      #     fromExpression: response.body.facts[0]
+      #   - name: fact2
+      #     fromExpression: response.body.facts[1]
   verification:
     analysisTemplates:
     - name: guestbook-verification-3
@@ -134,13 +134,19 @@ spec:
         config:
           repoURL: https://github.com/emilyxinyi/kargo.git
           prNumber: ${{ outputs['open-pr'].prNumber }}
+        # spec: 
+        #   interval: "5m0s"
+      - uses: compose-output
+        as: commitNumber
+        config:
+          commitNumber: ${{ outputs.wait-for-pr.commit }}
       - uses: argocd-update
         config:
           apps:
           - name: guestbook-prod-useast
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredRevision: ${{ outputs.wait-for-pr.commit }}
+              desiredRevision: ${{ outputs.commitNumber.commitNumber }}
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
