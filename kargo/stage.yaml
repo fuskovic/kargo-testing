@@ -136,17 +136,17 @@ spec:
           prNumber: ${{ outputs['open-pr'].prNumber }}
         # spec: 
         #   interval: "5m0s"
-      - uses: compose-output
-        as: commitNumber
-        config:
-          commitNumber: ${{ outputs['wait-for-pr'].commit }}
+      # - uses: compose-output
+      #   as: commitNumber
+      #   config:
+      #     commitNumber: ${{ outputs['wait-for-pr'].commit }}
       - uses: argocd-update
         config:
           apps:
           - name: guestbook-prod-useast
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
-              desiredRevision: ${{ outputs.commitNumber.commitNumber }}
+              desiredRevision: ${{ outputs['wait-for-pr'].commit}}
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
