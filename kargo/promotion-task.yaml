@@ -5,7 +5,7 @@ metadata:
   namespace: guestbook
 spec:
   vars:
-  - name: stage
+  - name: app
   steps:
   # - uses: git-clone
   #   config:
@@ -18,7 +18,7 @@ spec:
       checkout:
       - branch: main
         path: ./src
-      - branch: stage/${{ vars.stage }}
+      - branch: stage/${{ ctx.stage }}
         create: true
         path: ./out
   - uses: git-clear
@@ -27,12 +27,12 @@ spec:
   - uses: kustomize-set-image
     as: update-image
     config:
-      path: ./src/guestbook/base
+      path: ./src/${{ vars.app }}/base
       images:
-      - image: ghcr.io/emilyxinyi/guestbook
+      - image: ghcr.io/emilyxinyi/${{ vars.app }}
   - uses: kustomize-build
     config:
-      path: ./src/guestbook/stages/${{ vars.stage }}
+      path: ./src/${{ vars.app }}/stages/${{ ctx.stage }}
       outPath: ./out/manifests.yaml
   # - uses: git-commit
   #   config:
@@ -49,7 +49,7 @@ spec:
   - uses: git-push
     config:
       path: ./out
-      targetBranch: stage/${{ vars.stage }}
+      targetBranch: stage/${{ ctx.stage }}
   # - uses: argocd-update
   #   config:
   #     apps:
@@ -57,6 +57,6 @@ spec:
   - uses: argocd-update
     config:
       apps:
-      - name: guestbook-${{ vars.stage }}
+      - name: ${{ vars.app }}-${{ ctx.stage }}
         sources:
         - repoURL: https://github.com/emilyxinyi/kargo.git
