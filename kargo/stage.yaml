@@ -38,7 +38,7 @@ spec:
     sources:
       stages:
       - test
-      requiredSoakTime: 2m0s
+      # requiredSoakTime: 2m0s
   promotionTemplate:
     spec:
       vars:
