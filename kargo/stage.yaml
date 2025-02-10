@@ -84,6 +84,8 @@ spec:
       vars:
       - name: gitRepo
         value: https://github.com/emilyxinyi/kargo
+      - name: slackChannel
+        value: test-http
       steps:
       - uses: git-clone
         config:
@@ -150,30 +152,30 @@ spec:
       - uses: compose-output
         as: pr-link
         config:
-          url: ${{ vars.gitRepo }}/pull/${{ outputs['wait-for-pr'].commit }}
-      # - uses: http
-      #   as: slack-message
-      #   config:
-      #     method: POST
-      #     url: https://slack.com/api/chat.postMessage
-      #     headers:
-      #     - name: Authorization
-      #       value: Bearer ${{ secrets.slack.token }}
-      #     - name: Content-Type
-      #       value: application/json
-      #     body: |
-      #       ${{ quote({
-      #         "channel": vars.slackChannel,
-      #         "blocks": [
-      #           {
-      #             "type": "section",
-      #             "text": {
-      #               "type": "mrkdwn",
-      #               "text": "Hi I am a bot that can post *_fancy_* messages to any public channel."
-      #             }
-      #           }
-      #         ]
-      #       }) }}
+          url: ${{ vars.gitRepo }}/commit/${{ outputs['wait-for-pr'].commit }}
+      - uses: http
+        as: slack-message
+        config:
+          method: POST
+          url: https://slack.com/api/chat.postMessage
+          headers:
+          - name: Authorization
+            value: Bearer ${{ secrets.slack.token }}
+          - name: Content-Type
+            value: application/json
+          body: |
+            ${{ quote({
+              "channel": vars.slackChannel,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Hi I am a bot that can post *_fancy_* messages to any public channel."
+                  }
+                }
+              ]
+            }) }}
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
