@@ -84,8 +84,6 @@ spec:
       vars:
       - name: gitRepo
         value: https://github.com/emilyxinyi/kargo
-      - name: slackChannel
-        value: test-http
       steps:
       - uses: git-clone
         config:
@@ -150,7 +148,7 @@ spec:
             - repoURL: https://github.com/emilyxinyi/kargo.git
               desiredRevision: ${{ outputs['wait-for-pr'].commit }}
       - uses: compose-output
-        as: pr-link
+        as: commit-link
         config:
           url: ${{ vars.gitRepo }}/commit/${{ outputs['wait-for-pr'].commit }}
       - uses: http
@@ -165,7 +163,7 @@ spec:
             value: application/json
           body: |
             ${{ quote({
-              "channel": vars.slackChannel,
+              "channel": "C08CPA2KB9A",
               "blocks": [
                 {
                   "type": "section",
