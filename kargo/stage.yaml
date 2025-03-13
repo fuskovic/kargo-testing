@@ -60,17 +60,30 @@ spec:
       - task: 
           name: standard-process
       - uses: http
-        as: cat-facts
+        as: snow
         config:
-          method: GET
-          url: https://www.catfacts.net/api/
+          method: POST
+          url: https://dev299333.service-now.com/api/now/table/change_request
+          headers: 
+          - name: Authorization
+            value: Basic ${{ toBase64( secrets.snow.username + ":" + secrets.snow.password ) }}
+          - name: Content-Type
+            value: application/json
+          - name: Accept
+            value: application/json
           outputs:
           - name: status
             fromExpression: response.status
-          - name: fact1
-            fromExpression: response.body.facts[0]
-          - name: fact2
-            fromExpression: response.body.facts[1]
+          body: |
+            {
+              "short_description": "This is a test",
+              "start_date": "2024-03-01 00:00:00",
+              "end_date": "2024-03-02 00:00:00"
+            }
+          # - name: fact1
+          #   fromExpression: response.body.facts[0]
+          # - name: fact2
+          #   fromExpression: response.body.facts[1]
   verification:
     analysisTemplates:
     - name: guestbook-verification-3
