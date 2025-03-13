@@ -81,8 +81,8 @@ spec:
           outputs:
           - name: status
             fromExpression: response.status
-          - name: number
-            fromExpression: response.body.results.number
+          # - name: number
+          #   fromExpression: response.body.results.number
           # - name: fact1
           #   fromExpression: response.body.facts[0]
           # - name: fact2
