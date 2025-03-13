@@ -78,6 +78,13 @@ spec:
               "start_date": "2024-03-01 00:00:00",
               "end_date": "2024-03-02 00:00:00"
             }
+          outputs:
+          - name: status
+            fromExpression: response.status
+          # - name: fact1
+          #   fromExpression: response.body.facts[0]
+          # - name: fact2
+          #   fromExpression: response.body.facts[1]
   verification:
     analysisTemplates:
     - name: guestbook-verification-3
