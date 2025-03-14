@@ -66,8 +66,8 @@ spec:
           url: https://dev299333.service-now.com/api/now/table/change_request
           headers: 
           - name: Authorization
-            # value: Basic ${{ toBase64( secrets.snow.username + ":" + secrets.snow.password ) }}
-            value: Basic ${{ secrets.snow.hashed }}
+            value: Basic ${{ toBase64( secrets.snow.username + ":" + secrets.snow.password ) }}
+            # value: Basic ${{ secrets.snow.hashed }}
           - name: Content-Type
             value: application/json
           - name: Accept
