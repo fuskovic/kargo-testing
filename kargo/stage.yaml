@@ -135,6 +135,7 @@ spec:
           path: ./src/guestbook/base
           images:
           - image: ghcr.io/emilyxinyi/guestbook
+            tag: ${{ imageFrom(ghcr.io/emilyxinyi/guestbook).Tag }}
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/prod-useast
