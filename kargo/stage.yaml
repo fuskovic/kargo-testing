@@ -116,6 +116,8 @@ spec:
       vars:
       - name: gitRepo
         value: https://github.com/emilyxinyi/kargo
+        name: imageRepo
+        value: ghcr.io/emilyxinyi/guestbook
       steps:
       - uses: git-clone
         config:
@@ -137,7 +139,8 @@ spec:
           path: ./src/guestbook/base
           images:
           - image: ghcr.io/emilyxinyi/guestbook
-            tag: ${{ imageFrom(ghcr.io/emilyxinyi/guestbook).Tag }}
+            # tag: ${{ imageFrom(ghcr.io/emilyxinyi/guestbook).Tag }}
+            tag: ${{ imageFrom(vars.imageRepo).Tag }}
       - uses: kustomize-build
         config:
           path: ./src/guestbook/stages/prod-useast
