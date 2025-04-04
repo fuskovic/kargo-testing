@@ -6,6 +6,7 @@ metadata:
 spec:
   vars:
   - name: app
+  - name: imageRepo
   steps:
   - uses: git-clone
     config:
@@ -24,8 +25,8 @@ spec:
     config:
       path: ./src/${{ vars.app }}/base
       images:
-      - image: ghcr.io/emilyxinyi/${{ vars.app }}
-        tag: ${{ imageFrom(ghcr.io/emilyxinyi/${{ vars.app }}).Tag }}
+      - image: ${{ vars.imageRepo }}
+        tag: ${{ imageFrom(vars.imageRepo).Tag }}
   - uses: kustomize-build
     config:
       path: ./src/${{ vars.app }}/stages/${{ ctx.stage }}
