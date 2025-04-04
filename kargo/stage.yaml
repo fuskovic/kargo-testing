@@ -58,6 +58,8 @@ spec:
       vars:
       - name: app
         value: guestbook
+      - name: imageRepo 
+        value: ghcr.io/emilyxinyi/${{ vars.app }}
       steps:
       - task: 
           name: standard-process
@@ -227,6 +229,8 @@ spec:
       vars:
       - name: app
         value: guestbook
+      - name: imageRepo 
+        value: ghcr.io/emilyxinyi/${{ vars.app }}
       steps:
       - task: 
           name: standard-process
