@@ -63,28 +63,28 @@ spec:
       steps:
       - task: 
           name: standard-process
-      - uses: http
-        as: snow
-        config:
-          method: POST
-          url: https://dev299333.service-now.com/api/now/table/change_request
-          headers: 
-          - name: Authorization
-            value: Basic ${{ toBase64( secrets.snow.username + ":" + secrets.snow.password ) }}
-            # value: Basic ${{ secrets.snow.hashed }}
-          - name: Content-Type
-            value: application/json
-          - name: Accept
-            value: application/json
-          body: |
-            {
-              "short_description": "This is a test",
-              "start_date": "2024-03-01 00:00:00",
-              "end_date": "2024-03-02 00:00:00"
-            }
-          outputs:
-          - name: status
-            fromExpression: response.status
+      # - uses: http
+      #   as: snow
+      #   config:
+      #     method: POST
+      #     url: https://dev299333.service-now.com/api/now/table/change_request
+      #     headers: 
+      #     - name: Authorization
+      #       value: Basic ${{ toBase64( secrets.snow.username + ":" + secrets.snow.password ) }}
+      #       # value: Basic ${{ secrets.snow.hashed }}
+      #     - name: Content-Type
+      #       value: application/json
+      #     - name: Accept
+      #       value: application/json
+      #     body: |
+      #       {
+      #         "short_description": "This is a test",
+      #         "start_date": "2024-03-01 00:00:00",
+      #         "end_date": "2024-03-02 00:00:00"
+      #       }
+      #     outputs:
+      #     - name: status
+      #       fromExpression: response.status
           # - name: number
           #   fromExpression: response.body.results.number
           # - name: fact1
