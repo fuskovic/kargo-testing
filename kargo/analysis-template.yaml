@@ -3,20 +3,34 @@ kind: AnalysisTemplate
 metadata:
   name: guestbook-verification-3
   namespace: guestbook
+# spec:
+#   metrics:
+#     - name: test
+#       provider:
+#         job:
+#           spec:
+#             backoffLimit: 1
+#             template:
+#               spec:
+#                 containers:
+#                   - command:
+#                       - /bin/sh
+#                       - -c
+#                       - exit 0
+#                     image: alpine:latest
+#                     name: test
+#                 restartPolicy: Never
 spec:
   metrics:
-    - name: test
-      provider:
-        job:
-          spec:
-            backoffLimit: 1
-            template:
-              spec:
-                containers:
-                  - command:
-                      - /bin/sh
-                      - -c
-                      - exit 0
-                    image: alpine:latest
-                    name: test
-                restartPolicy: Never
+  - name: running-pods
+    # interval: 10s
+    # count: 6
+    # successCondition: result[0] < 1
+    # failureLimit: 1
+    provider:
+      prometheus:
+        address: http://kube-prometheus-stack-prometheus.monitoring.svc:9090
+        insecure: true
+        timeout: 40
+        query: |
+          sum(kube_pod_status_phase{phase!='Running',pod=~"guestbook-.*"}) by (pod)
