@@ -15,7 +15,7 @@ spec:
         app: guestbook
     spec:
       containers:
-      - image: ghcr.io/emilyxinyi/guestbook:temp
+      - image: ghcr.io/emilyxinyi/guestbook:latest
         name: guestbook
         ports:
         - containerPort: 80
