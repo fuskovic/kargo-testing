@@ -35,7 +35,8 @@ spec:
     as: commit
     config:
       path: ./out
-      message: ${{ outputs['update-image'].commitMessage }}
+      messageFromSteps:
+        - update-image
   - uses: git-push
     config:
       path: ./out
