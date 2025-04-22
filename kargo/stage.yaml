@@ -76,7 +76,7 @@ spec:
       - uses: kustomize-set-image
         as: update-image
         config:
-          path: ./src/guestbook/uat
+          path: ./src/guestbook/stages/uat
           images:
           - image: ghcr.io/emilyxinyi/guestbook
             tag: ${{ imageFrom(vars.imageRepo).Tag }}
