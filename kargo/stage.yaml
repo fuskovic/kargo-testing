@@ -94,7 +94,8 @@ spec:
         as: push
         config:
           path: ./out
-          generateTargetBranch: true
+          targetBranch: stage/uat
+          # generateTargetBranch: true
       - uses: argocd-update
         config:
           apps:
