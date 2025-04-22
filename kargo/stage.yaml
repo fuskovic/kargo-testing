@@ -56,13 +56,51 @@ spec:
   promotionTemplate:
     spec:
       vars:
-      - name: app
-        value: guestbook
-      - name: imageRepo 
-        value: ghcr.io/emilyxinyi/${{ vars.app }}
+      - name: gitRepo
+        value: https://github.com/emilyxinyi/kargo
+        name: imageRepo
+        value: ghcr.io/emilyxinyi/guestbook
       steps:
-      - task: 
-          name: standard-process
+      - uses: git-clone
+        config:
+          repoURL: https://github.com/emilyxinyi/kargo.git
+          checkout:
+          - branch: main
+            path: ./src
+          - branch: stage/uat
+            create: true
+            path: ./out
+      - uses: git-clear
+        config:
+          path: ./out
+      - uses: kustomize-set-image
+        as: update-image
+        config:
+          path: ./src/guestbook/uat
+          images:
+          - image: ghcr.io/emilyxinyi/guestbook
+            tag: ${{ imageFrom(vars.imageRepo).Tag }}
+      - uses: kustomize-build
+        config:
+          path: ./src/guestbook/stages/uat
+          outPath: ./out/manifests.yaml
+      - uses: git-commit
+        as: commit
+        config:
+          path: ./out
+          messageFromSteps:
+          - update-image
+      - uses: git-push
+        as: push
+        config:
+          path: ./out
+          generateTargetBranch: true
+      - uses: argocd-update
+        config:
+          apps:
+          - name: guestbook-prod-useast
+            sources:
+            - repoURL: https://github.com/emilyxinyi/kargo.git
       # - uses: http
       #   as: snow
       #   config:
