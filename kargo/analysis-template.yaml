@@ -29,7 +29,7 @@ spec:
     # failureLimit: 1
     provider:
       prometheus:
-        address: http://kube-prometheus-stack-prometheus.monitoring.svc:9090
+        address: http://prometheus-kube-prometheus-prometheus.monitoring.svc:9090
         insecure: true
         timeout: 40
         query: |
