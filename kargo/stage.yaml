@@ -98,7 +98,7 @@ spec:
       - uses: argocd-update
         config:
           apps:
-          - name: guestbook-prod-useast
+          - name: guestbook-prod-uat
             sources:
             - repoURL: https://github.com/emilyxinyi/kargo.git
       # - uses: http
