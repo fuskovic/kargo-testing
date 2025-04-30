@@ -244,7 +244,7 @@ spec:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Hi I am a bot that can post *_fancy_* messages to any public channel."
+                    "text": "PR merged: " + task.outputs['commit-link'].url
                   }
                 }
               ]
