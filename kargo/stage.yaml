@@ -231,7 +231,6 @@ spec:
         config:
           method: POST
           url: https://slack.com/api/chat.postMessage
-          checkStatus: true
           headers:
           - name: Authorization
             value: Bearer ${{ secrets.slack.token }}
@@ -250,6 +249,9 @@ spec:
                 }
               ]
             }) }}
+          outputs:
+          - name: status
+            fromExpression: response.status
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
