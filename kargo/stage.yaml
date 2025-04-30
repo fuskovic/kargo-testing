@@ -244,7 +244,7 @@ spec:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "PR merged: " + task.outputs['commit-link'].url
+                    "text": "PR merged: " + outputs['commit-link'].url
                   }
                 }
               ]
