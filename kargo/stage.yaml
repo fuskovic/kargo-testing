@@ -231,6 +231,7 @@ spec:
         config:
           method: POST
           url: https://slack.com/api/chat.postMessage
+          checkStatus: true
           headers:
           - name: Authorization
             value: Bearer ${{ secrets.slack.token }}
