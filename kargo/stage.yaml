@@ -225,7 +225,7 @@ spec:
       - uses: compose-output
         as: commit-link
         config:
-          url: ${{ vars.gitRepo }}/commit/${{ outputs['wait-for-pr'].commit }}
+          url: https://github.com/emilyxinyi/kargo/commit/${{ outputs['wait-for-pr'].commit }}
       - uses: http
         as: slack-message
         config:
