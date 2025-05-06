@@ -252,30 +252,30 @@ spec:
           outputs:
           - name: status
             fromExpression: response.status
-# ---
-# apiVersion: kargo.akuity.io/v1alpha1
-# kind: Stage
-# metadata:
-#   name: prod-uswest
-#   namespace: guestbook
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "2"
-# spec:
-#   shard: kargo-agent
-#   requestedFreight:
-#   - origin:
-#       kind: Warehouse
-#       name: guestbook
-#     sources:
-#       stages:
-#       - uat
-#   promotionTemplate:
-#     spec:
-#       vars:
-#       - name: app
-#         value: guestbook
-#       - name: imageRepo 
-#         value: ghcr.io/emilyxinyi/${{ vars.app }}
-#       steps:
-#       - task: 
-#           name: standard-process
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-uswest
+  namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  shard: kargo-agent
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: guestbook
+    sources:
+      stages:
+      - uat
+  promotionTemplate:
+    spec:
+      vars:
+      - name: app
+        value: guestbook
+      - name: imageRepo 
+        value: ghcr.io/emilyxinyi/${{ vars.app }}
+      steps:
+      - task: 
+          name: standard-process
