@@ -88,8 +88,8 @@ spec:
         as: commit
         config:
           path: ./out
-          messageFromSteps:
-          - update-image
+          message: | 
+            ${{ ctx.stage }}: ${{ outputs['update-image'].commitMessage}}
       - uses: git-push
         as: push
         config:
@@ -188,8 +188,8 @@ spec:
         as: commit
         config:
           path: ./out
-          messageFromSteps:
-          - update-image
+          message: | 
+            ${{ ctx.stage }}: ${{ outputs['update-image'].commitMessage}}
       - uses: git-push
         as: push
         config:
