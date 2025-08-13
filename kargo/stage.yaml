@@ -208,7 +208,7 @@ spec:
         as: wait-for-pr
         config:
           repoURL: https://github.com/emilyxinyi/kargo.git
-          prNumber: ${{ outputs['open-pr'].prNumber }}
+          prNumber: ${{ outputs['open-pr'].pr.id }}
         # spec: 
         #   interval: "5m0s"
       # - uses: compose-output
