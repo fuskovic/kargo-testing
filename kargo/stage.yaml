@@ -55,13 +55,13 @@ spec:
     spec:
       vars:
       - name: gitRepo
-        value: https://github.com/emilyxinyi/kargo
+        value: https://github.com/fuskovic/kargo
         name: imageRepo
         value: ghcr.io/emilyxinyi/guestbook
       steps:
       - uses: git-clone
         config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
+          repoURL: https://github.com/fuskovic/kargo.git
           checkout:
           - branch: main
             path: ./src
@@ -99,7 +99,7 @@ spec:
           apps:
           - name: guestbook-uat
             sources:
-            - repoURL: https://github.com/emilyxinyi/kargo.git
+            - repoURL: https://github.com/fuskovic/kargo.git
       # - uses: http
       #   as: snow
       #   config:
@@ -151,13 +151,13 @@ spec:
     spec:
       vars:
       - name: gitRepo
-        value: https://github.com/emilyxinyi/kargo
+        value: https://github.com/fuskovic/kargo
         name: imageRepo
         value: ghcr.io/emilyxinyi/guestbook
       steps:
       - uses: git-clone
         config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
+          repoURL: https://github.com/fuskovic/kargo.git
           checkout:
           - branch: main
             path: ./src
@@ -196,7 +196,7 @@ spec:
       - uses: git-open-pr
         as: open-pr
         config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
+          repoURL: https://github.com/fuskovic/kargo.git
           createTargetBranch: true
           sourceBranch: ${{ outputs.push.branch }}
           # targetBranch: stage/${{ ctx.stage }}
@@ -204,7 +204,7 @@ spec:
       - uses: git-wait-for-pr
         as: wait-for-pr
         config:
-          repoURL: https://github.com/emilyxinyi/kargo.git
+          repoURL: https://github.com/fuskovic/kargo.git
           prNumber: ${{ outputs['open-pr'].pr.id }}
         # spec: 
         #   interval: "5m0s"
@@ -217,12 +217,12 @@ spec:
           apps:
           - name: guestbook-prod-useast
             sources:
-            - repoURL: https://github.com/emilyxinyi/kargo.git
+            - repoURL: https://github.com/fuskovic/kargo.git
               desiredRevision: ${{ outputs['wait-for-pr'].commit }}
       - uses: compose-output
         as: commit-link
         config:
-          url: https://github.com/emilyxinyi/kargo/commit/${{ outputs['wait-for-pr'].commit }}
+          url: https://github.com/fuskovic/kargo/commit/${{ outputs['wait-for-pr'].commit }}
       - uses: http
         as: slack-message
         config:

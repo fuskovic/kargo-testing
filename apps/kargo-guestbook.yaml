@@ -5,7 +5,7 @@ metadata:
 spec:
   project: kargo-demo
   source:
-    repoURL: https://github.com/emilyxinyi/kargo.git
+    repoURL: https://github.com/fuskovic/kargo.git
     path: kargo
   destination:
     # server: https://cc19n7e2dnosprep-cplane.kargosvcs.akuity.cloud
