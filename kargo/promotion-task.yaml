@@ -10,7 +10,7 @@ spec:
   steps:
   - uses: git-clone
     config:
-      repoURL: https://github.com/fuskovic/kargo.git
+      repoURL: https://github.com/fuskovic/kargo-testing.git
       checkout:
       - branch: main
         path: ./src
@@ -46,4 +46,4 @@ spec:
       apps:
       - name: ${{ vars.app }}-${{ ctx.stage }}
         sources:
-        - repoURL: https://github.com/fuskovic/kargo.git
+        - repoURL: https://github.com/fuskovic/kargo-testing.git

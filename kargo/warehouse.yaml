@@ -8,7 +8,7 @@ metadata:
 spec:
   subscriptions:
   - git:
-      repoURL: https://github.com/fuskovic/kargo.git
+      repoURL: https://github.com/fuskovic/kargo-testing.git
       branch: main
   - image:
       repoURL: ghcr.io/emilyxinyi/guestbook
