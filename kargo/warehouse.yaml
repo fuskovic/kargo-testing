@@ -6,7 +6,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  shard: kargo-agent
   subscriptions:
   - git:
       repoURL: https://github.com/emilyxinyi/kargo.git
