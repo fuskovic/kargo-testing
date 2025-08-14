@@ -23,7 +23,7 @@ spec:
         targetRevision: stage/{{stage}}
         path: ./
       destination:
-        name: mac1
+        name: in-cluster
         namespace: guestbook-{{stage}}
       syncPolicy:
         syncOptions:
