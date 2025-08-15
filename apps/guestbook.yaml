@@ -17,7 +17,7 @@ spec:
       annotations:
         kargo.akuity.io/authorized-stage: guestbook:{{stage}}
     spec:
-      project: kargo-demo
+      project: guestbook
       source:
         repoURL: https://github.com/fuskovic/kargo-testing.git
         targetRevision: stage/{{stage}}
